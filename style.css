@@ -1,0 +1,8 @@
+.pict {
+  background: url(./masjid.jpg);
+  background-size: cover;
+}
+
+.audio {
+  display: none;
+}

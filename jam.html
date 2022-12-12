@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css" />
+    <title>My Clock</title>
+  </head>
+  <body>
+    <div>
+      <div>
+        <marquee behavior="" direction="" class="font-semibold text-red-600" id="marque">JANGAN LUPA SHOLAT BROTHER</marquee>
+      </div>
+      <div class="flex flex-col justify-center h-[100vh] items-center border pict mt-0">
+        <div id="clock" class="text-white font-semibold text-4xl"></div>
+        <div>
+          <h1 class="text-6xl font-semibold text-white">Jadwal Sholat</h1>
+          <div class="mt-8">
+            <div class="flex justify-between">
+              <p class="text-3xl text-white">Isya</p>
+              <p class="text-3xl text-white ml-[51px]">:</p>
+              <p class="text-2xl border bg-white px-2">19.16</p>
+            </div>
+            <div class="flex justify-between mt-3">
+              <p class="text-3xl text-white">Shubuh</p>
+              <p class="text-3xl text-white ml-[2px]">:</p>
+              <p class="text-2xl border bg-white px-2">04.05</p>
+            </div>
+            <div class="flex justify-between mt-3">
+              <p class="text-3xl text-white">Dzuhur</p>
+              <p class="text-3xl text-white ml-2">:</p>
+              <p class="text-2xl border bg-white px-2">11.45</p>
+            </div>
+            <div class="flex justify-between mt-3">
+              <p class="text-3xl text-white">Ashar</p>
+              <p class="text-3xl text-white ml-[30px]">:</p>
+              <p class="text-2xl border bg-white px-2">15.12</p>
+            </div>
+            <div class="flex justify-between mt-3">
+              <p class="text-3xl text-white">Magrib</p>
+              <p class="text-3xl text-white ml-[12px]">:</p>
+              <p class="text-2xl border bg-white px-2">18.00</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function showTime() {
+        var date = new Date();
+        var h = date.getHours();
+        var m = date.getMinutes();
+        var s = date.getSeconds();
+        var session = "AM";
+
+        if ((h) => 12) {
+          session = "PM";
+        } else if (h == 0) {
+          h = 12;
+        }
+
+        h = h < 10 ? "0" + h : h;
+        m = m < 10 ? "0" + m : m;
+        s = s < 10 ? "0" + s : s;
+        var time = h + ":" + m + ":" + s + " " + session;
+        document.getElementById("clock").innerText = time;
+        document.getElementById("clock").textContent = time;
+        alert1();
+        setTimeout(showTime, 1000);
+      }
+
+      function alert1() {
+        var date = new Date();
+        var h = date.getHours();
+        var m = date.getMinutes();
+        var s = date.getSeconds();
+        var session = "AM";
+        var audio = new Audio("./adzan.mp3");
+        var marque = document.getElementById("marque");
+
+        h = h < 10 ? "0" + h : h;
+        m = m < 10 ? "0" + m : m;
+        s = s < 10 ? "0" + s : s;
+        var time = h + ":" + m + ":" + s + " " + session;
+        document.getElementById("clock").innerText = time;
+        document.getElementById("clock").textContent = time;
+
+        if (time == "12:39:45 AM") {
+          Swal.fire({
+            icon: "info",
+            title: "WAKTU SHOLAT SHUBUH",
+            text: "Segera nunaikan sholat isya",
+          });
+          audio.play();
+          marque.innerHTML = "WAKTU SHOLAT ISYA TELAH TIBA, SEGERALAH SHOLAT DAN SEBAIK-BAIKNYA ";
+        } else if (time == "04:05:00 AM") {
+          Swal.fire({
+            icon: "info",
+            title: "WAKTU SHOLAT SHUBUH",
+            text: "Segera nunaikan sholat isya",
+          });
+        } else if (time == "11:45:00 AM") {
+          Swal.fire({
+            icon: "info",
+            title: "WAKTU SHOLAT DZUHUR",
+            text: "Segera nunaikan sholat isya",
+          });
+        } else if (time == "15:12:00 PM") {
+          Swal.fire({
+            icon: "info",
+            title: "WAKTU SHOLAT ASHAR",
+            text: "Segera nunaikan sholat isya",
+          });
+        } else if (time == "18:00:00 PM") {
+          Swal.fire({
+            icon: "info",
+            title: "WAKTU SHOLAT MAGRIB",
+            text: "Segera nunaikan sholat isya",
+          });
+        }
+      }
+
+      showTime();
+    </script>
+    <script src="./dist/sweetalert2.all.min.js"></script>
+  </body>
+</html>
